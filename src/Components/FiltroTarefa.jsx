@@ -1,39 +1,31 @@
 
 import { useState } from "react";
 
-export default function FiltroTarefa({task}){
+export default function FiltroTarefa(props){
 
-    const [mostrarInput,setMostrarInput] = useState(false);
+    const [mostrarInputNome,setMostrarInputNome] = useState(false);
+    const [mostrarInputCategoria,setMostrarInputCategoria] = useState(false);
     const [nomeFiltro,setNomeFiltro] = useState("");
+    const [categoriaFiltro,setCategoriaFiltro] = useState("");
     const [resultado,setResultado] = useState([]);
 
 
-function filtrarPorNome(nome){
-    const tarefa = task.filter((t) => t.nome.toLowerCase() === nome.toLowerCase());
-    return tarefa;
-}
-
-function aplicarFiltro() {
-    const res = filtrarPorNome(nomeFiltro);
+    
+function aplicarFiltroNome() {
+    const res = props.filtrarPorNome(nomeFiltro);
     setResultado(res);
   }
 
-function filtrarPorCategoria(categoria){
-    const filtradas = task.filter(t => t.categoria.toLowerCase() === categoria.toLowerCase());
-
-    return (
-        <ul>{filtradas.map(t => (
-        <li>{t.id} - {t.categoria}</li>
-
-        ))}</ul>
-    );
-}    
+  function aplicarFiltroCategoria(){
+    const res = props.filtrarPorCategoria(categoriaFiltro);
+    setResultado(res);
+  }
   
      return(
-         <div>
+         <div className="">
 
-        <button onClick={() => setMostrarInput(true)} > Filtrar por nome</button>
-        {mostrarInput && (
+        <button onClick={() => setMostrarInputNome(true)} > Filtrar por nome</button>
+        {mostrarInputNome && (
             <div>
                 <input type="text"
                 placeholder="Digite o nome"
@@ -41,14 +33,29 @@ function filtrarPorCategoria(categoria){
                 onChange={(e) => setNomeFiltro(e.target.value)}
                 />
 
-                <button onClick={aplicarFiltro}> filtrar </button>
+                <button onClick={aplicarFiltroNome}> filtrar </button>
 
             </div>
         )}
 
-      <ul>{resultado.map(t => (
+        <button onClick={() => setMostrarInputCategoria(true)}> Filtrar por categoria</button>
+        {mostrarInputCategoria && (
+
+          <div>
+            <input type="text"
+            placeholder="Digite a categoria"
+            value={categoriaFiltro}
+            onChange={(e) => setCategoriaFiltro(e.target.value)}
+            />
+
+            <button onClick={aplicarFiltroCategoria}> Filtrar</button>
+          </div>
+
+        )}
+
+      <ul className="bg-amber-700">{resultado.map(t => (
          
-        <li key={t.id}> {t.id} - {t.nome}</li>
+        <li className="bg-black" key={t.id}> {t.id} - {t.nome} - {t.categoria}</li>
 
       ))}
       
