@@ -15,6 +15,7 @@ export default function App(){
   ]);
 
    const [erro,setErro] = useState("");
+   const [proximoId,setProximoId] = useState(5);
 
   function MarcarConcluida(id) {
   const novaLista = task.map(t =>
@@ -29,16 +30,13 @@ function filtrarPorNome(nome){
     return tarefa;
 }
 
-function filtrarPorCategoria(categoria){
-    const filtradas = task.filter(t => t.categoria.toLowerCase() === categoria.toLowerCase());
+function filtrarPorCategoria(categoria) {
+  const filtradas = task.filter(t =>
+    t.categoria.toLowerCase() === categoria.toLowerCase()
+  );
 
-    return (
-        <ul>{filtradas.map(t => (
-        <li>{t.id} - {t.categoria}</li>
-
-        ))}</ul>
-     );
-}   
+  return filtradas; // <-- só o array
+}
 
 
 
@@ -51,7 +49,7 @@ function filtrarPorCategoria(categoria){
  function addNewTask(nome,categoria){
 
     const novaT = {
-      id : Date.now(),
+      id : proximoId,
       nome : nome,
       categoria : categoria,
       concluida : false
@@ -64,7 +62,7 @@ function filtrarPorCategoria(categoria){
  
    setTask([...task,novaT]);
    setErro("");
-  
+   setProximoId(proximoId + 1);
   }
   
 

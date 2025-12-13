@@ -41,7 +41,7 @@ return (
   Adicionar
 </button>
 
- {props.erro && (<div> <li ><button className=" bg-black text-red-500 w-fit p-1"><ArrowUp/></button> <button className="bg-black text-red-500 font-medium border-red-500 rounded-md p-1 "  >  {props.erro} </button> </li> </div>
+ {props.erro && (<div><span className="bg-black flex justify-center text-red-500 font-medium border-red-500 rounded-md p-1 "  >  {props.erro} </span></div>
 )}
  
 

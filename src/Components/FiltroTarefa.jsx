@@ -22,9 +22,16 @@ function aplicarFiltroNome() {
   }
   
      return(
-         <div className="">
+         
+         <div>
 
-        <button onClick={() => setMostrarInputNome(true)} > Filtrar por nome</button>
+         <h1 className="bg-slate-400 text-center font-medium text-white">Filtro</h1>
+
+         <div className="bg-slate-200 flex flex-col">
+        
+         
+
+        <button className = "pr-2 text-center p-1 text-white border-white border-solid mr-6 ml-6 m-2 bg-slate-400 rounded-md"onClick={() => setMostrarInputNome(true)} > Filtrar por nome</button>
         {mostrarInputNome && (
             <div>
                 <input type="text"
@@ -38,7 +45,7 @@ function aplicarFiltroNome() {
             </div>
         )}
 
-        <button onClick={() => setMostrarInputCategoria(true)}> Filtrar por categoria</button>
+        <button className="text-center text-white p-1 border-white border-solid bg-slate-400 rounded-md ml-6 mr-6 m-2"onClick={() => setMostrarInputCategoria(true)}> Filtrar por categoria</button>
         {mostrarInputCategoria && (
 
           <div>
@@ -52,15 +59,18 @@ function aplicarFiltroNome() {
           </div>
 
         )}
-
-      <ul className="bg-amber-700">{resultado.map(t => (
+      
+      <div className=" h-auto">
+      <ul className="bg-slate-200">{resultado.map(t => (
          
-        <li className="bg-black" key={t.id}> {t.id} - {t.nome} - {t.categoria}</li>
+        <li className="bg-black border-b-amber-50 border border-solid rounded-md text-white" key={t.id}> {t.id} - {t.nome} - {t.categoria}</li>
 
       ))}
       
       </ul>
+      </div>
+        </div>
         </div>
      )
-
+     
 }
